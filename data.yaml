@@ -1,0 +1,6 @@
+train: C:\Users\David\PycharmProjects\Samolet\train
+val: C:\Users\David\PycharmProjects\Samolet\val
+
+nc: 3
+
+names: ["window", "empty", "filled"]
