@@ -10,4 +10,4 @@ if __name__ == '__main__':
     model = YOLO("yolov8m.pt")
     model = model.to(device)
 
-    model.train(data="data.yaml", batch=8, epochs=999, workers=4, patience=5)
+    model.train(data="data.yaml", batch=8, epochs=250, workers=4, patience=5)
