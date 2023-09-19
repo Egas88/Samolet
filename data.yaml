@@ -1,6 +1,6 @@
-train: C:\Users\David\PycharmProjects\Samolet\train
-val: C:\Users\David\PycharmProjects\Samolet\val
+train: C:\Users\policelettuce\PycharmProjects\Samolet\train
+val: C:\Users\policelettuce\PycharmProjects\Samolet\val
 
-nc: 3
+nc: 5
 
-names: ["window", "empty", "filled"]
+names: ["window", "empty", "filled", "balcony_window", "balcony_filled"]

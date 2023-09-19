@@ -1,3 +1,5 @@
 window
 empty
 filled
+balcony_window
+balcony_filled
