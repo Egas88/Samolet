@@ -1,6 +1,25 @@
 import os
 from PIL import Image
 
+
+def calculate_yololike_coorinates(x_center_coef, y_center_coef, x_width_coef, y_height_coef, img_width, img_height):
+    x_center = float(x_center_coef) * img_width
+    y_center = float(y_center_coef) * img_height
+    x_width = float(x_width_coef) * img_width
+    y_height = float(y_height_coef) * img_height
+
+    x_min = round(x_center - x_width / 2)
+    y_min = round(y_center - y_height / 2)
+    x_max = round(x_center + x_width / 2)
+    y_max = round(y_center + y_height / 2)
+
+    if x_min < 0: x_min = 0  # out-of-bounds check
+    if x_max > img_width: x_max = int(img_width)
+    if y_min < 0: y_min = 0
+    if y_max > img_height: y_max = int(img_height)
+
+    return x_min, y_min, x_max, y_max
+
 def convert_to_yololike():
     dir_path = r"/runs/detect/predict_v1_epoch250_labels"  # path to directory with images
     labels_path = dir_path + "\\labels\\"
@@ -15,20 +34,7 @@ def convert_to_yololike():
         for label_ns in labels:
             label = label_ns.split()
 
-            x_center = float(label[1]) * width
-            y_center = float(label[2]) * height
-            x_width = float(label[3]) * width
-            y_height = float(label[4]) * height
-
-            x_min = round(x_center - x_width / 2)
-            x_max = round(x_center + x_width / 2)
-            y_min = round(y_center - y_height / 2)
-            y_max = round(y_center + y_height / 2)
-
-            if x_min < 0: x_min = 0                         # out-of-bounds check
-            if x_max > width: x_max = int(width)
-            if y_min < 0: y_min = 0
-            if y_max > height: y_max = int(height)
+            x_min, y_min, x_max, y_max = calculate_yololike_coorinates(label[1], label[2], label[3], label[4], width, height)
 
             score = label[5]
             predicted_class = int(label[0]) + 1
